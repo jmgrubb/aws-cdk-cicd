@@ -1,0 +1,357 @@
+{
+  "version": "16.0.0",
+  "artifacts": {
+    "Tree": {
+      "type": "cdk:tree",
+      "properties": {
+        "file": "tree.json"
+      }
+    },
+    "cicd-iam-stack.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "cicd-iam-stack.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "cicd-iam-stack": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://unknown-account/eu-west-2",
+      "properties": {
+        "templateFile": "cicd-iam-stack.template.json",
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-eu-west-2",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-eu-west-2",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-eu-west-2/d7791242d81f39ee522face2269dd21d4b9ab548c7c2f9c7667c963926801bed.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "cicd-iam-stack.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-lookup-role-${AWS::AccountId}-eu-west-2",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "cicd-iam-stack.assets"
+      ],
+      "metadata": {
+        "/cicd-iam-stack/ToolingAccountID": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ToolingAccountID"
+          }
+        ],
+        "/cicd-iam-stack/automation-policy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "automationpolicy2B8E2BF9"
+          }
+        ],
+        "/cicd-iam-stack/automation-role/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "automationrole708EA008"
+          }
+        ],
+        "/cicd-iam-stack/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/cicd-iam-stack/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/cicd-iam-stack/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "cicd-iam-stack"
+    },
+    "cicd-stack.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "cicd-stack.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "cicd-stack": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://unknown-account/eu-west-2",
+      "properties": {
+        "templateFile": "cicd-stack.template.json",
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-eu-west-2",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-eu-west-2",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-eu-west-2/e0b1d20a18d9252ff268b7ef03b2962db5f2195c16fe02fa928f7e21f0600954.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "cicd-stack.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-lookup-role-${AWS::AccountId}-eu-west-2",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "cicd-stack.assets"
+      ],
+      "metadata": {
+        "/cicd-stack/roleArnDev": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "roleArnDev"
+          }
+        ],
+        "/cicd-stack/roleArnProd": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "roleArnProd"
+          }
+        ],
+        "/cicd-stack/roleArnQA": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "roleArnQA"
+          }
+        ],
+        "/cicd-stack/roleArnTooling": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "roleArnTooling"
+          }
+        ],
+        "/cicd-stack/S3BucketNameDev": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "S3BucketNameDev"
+          }
+        ],
+        "/cicd-stack/S3BucketNameProd": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "S3BucketNameProd"
+          }
+        ],
+        "/cicd-stack/S3BucketNameQA": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "S3BucketNameQA"
+          }
+        ],
+        "/cicd-stack/tooling_role/Policy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "toolingrolePolicyC6676B43"
+          }
+        ],
+        "/cicd-stack/artifact-bucket/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "artifactbucket134E2AA7"
+          }
+        ],
+        "/cicd-stack/mlops-repo/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "mlopsrepoEB364706"
+          }
+        ],
+        "/cicd-stack/mlops-repo/cicdstacktoolingpipelinedev7E11AE53EventRule/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "mlopsrepocicdstacktoolingpipelinedev7E11AE53EventRuleE2AD11DF"
+          }
+        ],
+        "/cicd-stack/mlops-repo/cicdstacktoolingpipelineprod28D89E64EventRule/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "mlopsrepocicdstacktoolingpipelineprod28D89E64EventRuleAF7DAC4C"
+          }
+        ],
+        "/cicd-stack/mlops-repo/cicdstacktoolingpipelineqaD57A23AFEventRule/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "mlopsrepocicdstacktoolingpipelineqaD57A23AFEventRuleB97BC10C"
+          }
+        ],
+        "/cicd-stack/codebuild-dev/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "codebuilddev5662E660"
+          }
+        ],
+        "/cicd-stack/codebuild-prod/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "codebuildprodDB351114"
+          }
+        ],
+        "/cicd-stack/codebuild-qa/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "codebuildqaC5BC8A02"
+          }
+        ],
+        "/cicd-stack/tooling-pipeline-dev/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "toolingpipelinedev2ADA2A65"
+          }
+        ],
+        "/cicd-stack/tooling-pipeline-dev/Source/CodeCommit/CodePipelineActionRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "toolingpipelinedevSourceCodeCommitCodePipelineActionRole3DBAA87A"
+          }
+        ],
+        "/cicd-stack/tooling-pipeline-dev/Source/CodeCommit/CodePipelineActionRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "toolingpipelinedevSourceCodeCommitCodePipelineActionRoleDefaultPolicyF1162BE1"
+          }
+        ],
+        "/cicd-stack/tooling-pipeline-dev/EventsRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "toolingpipelinedevEventsRoleDFE035B0"
+          }
+        ],
+        "/cicd-stack/tooling-pipeline-dev/EventsRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "toolingpipelinedevEventsRoleDefaultPolicy035B27AA"
+          }
+        ],
+        "/cicd-stack/tooling-pipeline-dev/Build/CodeBuild/CodePipelineActionRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "toolingpipelinedevBuildCodeBuildCodePipelineActionRoleB8267130"
+          }
+        ],
+        "/cicd-stack/tooling-pipeline-dev/Build/CodeBuild/CodePipelineActionRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "toolingpipelinedevBuildCodeBuildCodePipelineActionRoleDefaultPolicyE9F98279"
+          }
+        ],
+        "/cicd-stack/tooling-pipeline-prod/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "toolingpipelineprodC00AF7CE"
+          }
+        ],
+        "/cicd-stack/tooling-pipeline-prod/Source/CodeCommit/CodePipelineActionRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "toolingpipelineprodSourceCodeCommitCodePipelineActionRole64650585"
+          }
+        ],
+        "/cicd-stack/tooling-pipeline-prod/Source/CodeCommit/CodePipelineActionRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "toolingpipelineprodSourceCodeCommitCodePipelineActionRoleDefaultPolicy2CC86EB1"
+          }
+        ],
+        "/cicd-stack/tooling-pipeline-prod/EventsRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "toolingpipelineprodEventsRole8B6C7135"
+          }
+        ],
+        "/cicd-stack/tooling-pipeline-prod/EventsRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "toolingpipelineprodEventsRoleDefaultPolicyDB758BCE"
+          }
+        ],
+        "/cicd-stack/tooling-pipeline-prod/Build/CodeBuild/CodePipelineActionRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "toolingpipelineprodBuildCodeBuildCodePipelineActionRole3EBC2505"
+          }
+        ],
+        "/cicd-stack/tooling-pipeline-prod/Build/CodeBuild/CodePipelineActionRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "toolingpipelineprodBuildCodeBuildCodePipelineActionRoleDefaultPolicyA1C39037"
+          }
+        ],
+        "/cicd-stack/tooling-pipeline-qa/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "toolingpipelineqa7601CA4E"
+          }
+        ],
+        "/cicd-stack/tooling-pipeline-qa/Source/CodeCommit/CodePipelineActionRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "toolingpipelineqaSourceCodeCommitCodePipelineActionRole47D45007"
+          }
+        ],
+        "/cicd-stack/tooling-pipeline-qa/Source/CodeCommit/CodePipelineActionRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "toolingpipelineqaSourceCodeCommitCodePipelineActionRoleDefaultPolicy67EC7C05"
+          }
+        ],
+        "/cicd-stack/tooling-pipeline-qa/EventsRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "toolingpipelineqaEventsRole4B700F03"
+          }
+        ],
+        "/cicd-stack/tooling-pipeline-qa/EventsRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "toolingpipelineqaEventsRoleDefaultPolicy2BAF44FD"
+          }
+        ],
+        "/cicd-stack/tooling-pipeline-qa/Build/CodeBuild/CodePipelineActionRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "toolingpipelineqaBuildCodeBuildCodePipelineActionRole6324640F"
+          }
+        ],
+        "/cicd-stack/tooling-pipeline-qa/Build/CodeBuild/CodePipelineActionRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "toolingpipelineqaBuildCodeBuildCodePipelineActionRoleDefaultPolicy99B456CE"
+          }
+        ],
+        "/cicd-stack/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/cicd-stack/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/cicd-stack/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "cicd-stack"
+    }
+  }
+}

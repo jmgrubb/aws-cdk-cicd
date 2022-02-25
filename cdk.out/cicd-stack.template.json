@@ -1,0 +1,1833 @@
+{
+  "Parameters": {
+    "roleArnDev": {
+      "Type": "String",
+      "Description": "Role ARN dev env"
+    },
+    "roleArnProd": {
+      "Type": "String",
+      "Description": "Role ARN prod env"
+    },
+    "roleArnQA": {
+      "Type": "String",
+      "Description": "Role ARN QA env"
+    },
+    "roleArnTooling": {
+      "Type": "String",
+      "Description": "Role ARN tooling env"
+    },
+    "S3BucketNameDev": {
+      "Type": "String",
+      "Description": "S3 Bucket dev env"
+    },
+    "S3BucketNameProd": {
+      "Type": "String",
+      "Description": "S3 Bucket prod env"
+    },
+    "S3BucketNameQA": {
+      "Type": "String",
+      "Description": "S3 Bucket qa env"
+    },
+    "BootstrapVersion": {
+      "Type": "AWS::SSM::Parameter::Value<String>",
+      "Default": "/cdk-bootstrap/hnb659fds/version",
+      "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+    }
+  },
+  "Resources": {
+    "toolingrolePolicyC6676B43": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "logs:CreateLogGroup",
+                "logs:CreateLogStream",
+                "logs:PutLogEvents"
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":logs:eu-west-2:",
+                      {
+                        "Ref": "AWS::AccountId"
+                      },
+                      ":log-group:/aws/codebuild/",
+                      {
+                        "Ref": "codebuilddev5662E660"
+                      }
+                    ]
+                  ]
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":logs:eu-west-2:",
+                      {
+                        "Ref": "AWS::AccountId"
+                      },
+                      ":log-group:/aws/codebuild/",
+                      {
+                        "Ref": "codebuilddev5662E660"
+                      },
+                      ":*"
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "Action": [
+                "codebuild:CreateReportGroup",
+                "codebuild:CreateReport",
+                "codebuild:UpdateReport",
+                "codebuild:BatchPutTestCases",
+                "codebuild:BatchPutCodeCoverages"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":codebuild:eu-west-2:",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":report-group/",
+                    {
+                      "Ref": "codebuilddev5662E660"
+                    },
+                    "-*"
+                  ]
+                ]
+              }
+            },
+            {
+              "Action": [
+                "logs:CreateLogGroup",
+                "logs:CreateLogStream",
+                "logs:PutLogEvents"
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":logs:eu-west-2:",
+                      {
+                        "Ref": "AWS::AccountId"
+                      },
+                      ":log-group:/aws/codebuild/",
+                      {
+                        "Ref": "codebuildprodDB351114"
+                      }
+                    ]
+                  ]
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":logs:eu-west-2:",
+                      {
+                        "Ref": "AWS::AccountId"
+                      },
+                      ":log-group:/aws/codebuild/",
+                      {
+                        "Ref": "codebuildprodDB351114"
+                      },
+                      ":*"
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "Action": [
+                "codebuild:CreateReportGroup",
+                "codebuild:CreateReport",
+                "codebuild:UpdateReport",
+                "codebuild:BatchPutTestCases",
+                "codebuild:BatchPutCodeCoverages"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":codebuild:eu-west-2:",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":report-group/",
+                    {
+                      "Ref": "codebuildprodDB351114"
+                    },
+                    "-*"
+                  ]
+                ]
+              }
+            },
+            {
+              "Action": [
+                "logs:CreateLogGroup",
+                "logs:CreateLogStream",
+                "logs:PutLogEvents"
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":logs:eu-west-2:",
+                      {
+                        "Ref": "AWS::AccountId"
+                      },
+                      ":log-group:/aws/codebuild/",
+                      {
+                        "Ref": "codebuildqaC5BC8A02"
+                      }
+                    ]
+                  ]
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":logs:eu-west-2:",
+                      {
+                        "Ref": "AWS::AccountId"
+                      },
+                      ":log-group:/aws/codebuild/",
+                      {
+                        "Ref": "codebuildqaC5BC8A02"
+                      },
+                      ":*"
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "Action": [
+                "codebuild:CreateReportGroup",
+                "codebuild:CreateReport",
+                "codebuild:UpdateReport",
+                "codebuild:BatchPutTestCases",
+                "codebuild:BatchPutCodeCoverages"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":codebuild:eu-west-2:",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":report-group/",
+                    {
+                      "Ref": "codebuildqaC5BC8A02"
+                    },
+                    "-*"
+                  ]
+                ]
+              }
+            },
+            {
+              "Action": [
+                "s3:GetObject*",
+                "s3:GetBucket*",
+                "s3:List*",
+                "s3:DeleteObject*",
+                "s3:PutObject",
+                "s3:PutObjectLegalHold",
+                "s3:PutObjectRetention",
+                "s3:PutObjectTagging",
+                "s3:PutObjectVersionTagging",
+                "s3:Abort*"
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "artifactbucket134E2AA7",
+                    "Arn"
+                  ]
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "artifactbucket134E2AA7",
+                          "Arn"
+                        ]
+                      },
+                      "/*"
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "toolingpipelinedevSourceCodeCommitCodePipelineActionRole3DBAA87A",
+                  "Arn"
+                ]
+              }
+            },
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "toolingpipelinedevBuildCodeBuildCodePipelineActionRoleB8267130",
+                  "Arn"
+                ]
+              }
+            },
+            {
+              "Action": [
+                "s3:GetObject*",
+                "s3:GetBucket*",
+                "s3:List*"
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "artifactbucket134E2AA7",
+                    "Arn"
+                  ]
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "artifactbucket134E2AA7",
+                          "Arn"
+                        ]
+                      },
+                      "/*"
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "toolingpipelineprodSourceCodeCommitCodePipelineActionRole64650585",
+                  "Arn"
+                ]
+              }
+            },
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "toolingpipelineprodBuildCodeBuildCodePipelineActionRole3EBC2505",
+                  "Arn"
+                ]
+              }
+            },
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "toolingpipelineqaSourceCodeCommitCodePipelineActionRole47D45007",
+                  "Arn"
+                ]
+              }
+            },
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "toolingpipelineqaBuildCodeBuildCodePipelineActionRole6324640F",
+                  "Arn"
+                ]
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "toolingrolePolicyC6676B43",
+        "Roles": [
+          {
+            "Fn::Select": [
+              1,
+              {
+                "Fn::Split": [
+                  "/",
+                  {
+                    "Fn::Select": [
+                      5,
+                      {
+                        "Fn::Split": [
+                          ":",
+                          {
+                            "Ref": "roleArnTooling"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "cicd-stack/tooling_role/Policy/Resource"
+      }
+    },
+    "artifactbucket134E2AA7": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "AccessControl": "BucketOwnerFullControl",
+        "BucketEncryption": {
+          "ServerSideEncryptionConfiguration": [
+            {
+              "ServerSideEncryptionByDefault": {
+                "SSEAlgorithm": "AES256"
+              }
+            }
+          ]
+        },
+        "VersioningConfiguration": {
+          "Status": "Enabled"
+        }
+      },
+      "UpdateReplacePolicy": "Retain",
+      "DeletionPolicy": "Retain",
+      "Metadata": {
+        "aws:cdk:path": "cicd-stack/artifact-bucket/Resource"
+      }
+    },
+    "mlopsrepoEB364706": {
+      "Type": "AWS::CodeCommit::Repository",
+      "Properties": {
+        "RepositoryName": "MLOps"
+      },
+      "Metadata": {
+        "aws:cdk:path": "cicd-stack/mlops-repo/Resource"
+      }
+    },
+    "mlopsrepocicdstacktoolingpipelinedev7E11AE53EventRuleE2AD11DF": {
+      "Type": "AWS::Events::Rule",
+      "Properties": {
+        "EventPattern": {
+          "source": [
+            "aws.codecommit"
+          ],
+          "resources": [
+            {
+              "Fn::GetAtt": [
+                "mlopsrepoEB364706",
+                "Arn"
+              ]
+            }
+          ],
+          "detail-type": [
+            "CodeCommit Repository State Change"
+          ],
+          "detail": {
+            "event": [
+              "referenceCreated",
+              "referenceUpdated"
+            ],
+            "referenceName": [
+              "master"
+            ]
+          }
+        },
+        "State": "ENABLED",
+        "Targets": [
+          {
+            "Arn": {
+              "Fn::Join": [
+                "",
+                [
+                  "arn:",
+                  {
+                    "Ref": "AWS::Partition"
+                  },
+                  ":codepipeline:eu-west-2:",
+                  {
+                    "Ref": "AWS::AccountId"
+                  },
+                  ":",
+                  {
+                    "Ref": "toolingpipelinedev2ADA2A65"
+                  }
+                ]
+              ]
+            },
+            "Id": "Target0",
+            "RoleArn": {
+              "Fn::GetAtt": [
+                "toolingpipelinedevEventsRoleDFE035B0",
+                "Arn"
+              ]
+            }
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "cicd-stack/mlops-repo/cicdstacktoolingpipelinedev7E11AE53EventRule/Resource"
+      }
+    },
+    "mlopsrepocicdstacktoolingpipelineprod28D89E64EventRuleAF7DAC4C": {
+      "Type": "AWS::Events::Rule",
+      "Properties": {
+        "EventPattern": {
+          "source": [
+            "aws.codecommit"
+          ],
+          "resources": [
+            {
+              "Fn::GetAtt": [
+                "mlopsrepoEB364706",
+                "Arn"
+              ]
+            }
+          ],
+          "detail-type": [
+            "CodeCommit Repository State Change"
+          ],
+          "detail": {
+            "event": [
+              "referenceCreated",
+              "referenceUpdated"
+            ],
+            "referenceName": [
+              "master"
+            ]
+          }
+        },
+        "State": "ENABLED",
+        "Targets": [
+          {
+            "Arn": {
+              "Fn::Join": [
+                "",
+                [
+                  "arn:",
+                  {
+                    "Ref": "AWS::Partition"
+                  },
+                  ":codepipeline:eu-west-2:",
+                  {
+                    "Ref": "AWS::AccountId"
+                  },
+                  ":",
+                  {
+                    "Ref": "toolingpipelineprodC00AF7CE"
+                  }
+                ]
+              ]
+            },
+            "Id": "Target0",
+            "RoleArn": {
+              "Fn::GetAtt": [
+                "toolingpipelineprodEventsRole8B6C7135",
+                "Arn"
+              ]
+            }
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "cicd-stack/mlops-repo/cicdstacktoolingpipelineprod28D89E64EventRule/Resource"
+      }
+    },
+    "mlopsrepocicdstacktoolingpipelineqaD57A23AFEventRuleB97BC10C": {
+      "Type": "AWS::Events::Rule",
+      "Properties": {
+        "EventPattern": {
+          "source": [
+            "aws.codecommit"
+          ],
+          "resources": [
+            {
+              "Fn::GetAtt": [
+                "mlopsrepoEB364706",
+                "Arn"
+              ]
+            }
+          ],
+          "detail-type": [
+            "CodeCommit Repository State Change"
+          ],
+          "detail": {
+            "event": [
+              "referenceCreated",
+              "referenceUpdated"
+            ],
+            "referenceName": [
+              "master"
+            ]
+          }
+        },
+        "State": "ENABLED",
+        "Targets": [
+          {
+            "Arn": {
+              "Fn::Join": [
+                "",
+                [
+                  "arn:",
+                  {
+                    "Ref": "AWS::Partition"
+                  },
+                  ":codepipeline:eu-west-2:",
+                  {
+                    "Ref": "AWS::AccountId"
+                  },
+                  ":",
+                  {
+                    "Ref": "toolingpipelineqa7601CA4E"
+                  }
+                ]
+              ]
+            },
+            "Id": "Target0",
+            "RoleArn": {
+              "Fn::GetAtt": [
+                "toolingpipelineqaEventsRole4B700F03",
+                "Arn"
+              ]
+            }
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "cicd-stack/mlops-repo/cicdstacktoolingpipelineqaD57A23AFEventRule/Resource"
+      }
+    },
+    "codebuilddev5662E660": {
+      "Type": "AWS::CodeBuild::Project",
+      "Properties": {
+        "Artifacts": {
+          "Type": "CODEPIPELINE"
+        },
+        "Environment": {
+          "ComputeType": "BUILD_GENERAL1_SMALL",
+          "EnvironmentVariables": [
+            {
+              "Name": "CROSS_ACCOUNT_ROLE",
+              "Type": "PLAINTEXT",
+              "Value": {
+                "Ref": "roleArnDev"
+              }
+            },
+            {
+              "Name": "ENV",
+              "Type": "PLAINTEXT",
+              "Value": "Dev"
+            },
+            {
+              "Name": "S3_BUCKET_NAME",
+              "Type": "PLAINTEXT",
+              "Value": {
+                "Ref": "S3BucketNameDev"
+              }
+            }
+          ],
+          "Image": "aws/codebuild/standard:5.0",
+          "ImagePullCredentialsType": "CODEBUILD",
+          "PrivilegedMode": false,
+          "Type": "LINUX_CONTAINER"
+        },
+        "ServiceRole": {
+          "Ref": "roleArnTooling"
+        },
+        "Source": {
+          "Type": "CODEPIPELINE"
+        },
+        "Cache": {
+          "Type": "NO_CACHE"
+        },
+        "EncryptionKey": "alias/aws/s3",
+        "TimeoutInMinutes": 480
+      },
+      "Metadata": {
+        "aws:cdk:path": "cicd-stack/codebuild-dev/Resource"
+      }
+    },
+    "codebuildprodDB351114": {
+      "Type": "AWS::CodeBuild::Project",
+      "Properties": {
+        "Artifacts": {
+          "Type": "CODEPIPELINE"
+        },
+        "Environment": {
+          "ComputeType": "BUILD_GENERAL1_SMALL",
+          "EnvironmentVariables": [
+            {
+              "Name": "CROSS_ACCOUNT_ROLE",
+              "Type": "PLAINTEXT",
+              "Value": {
+                "Ref": "roleArnProd"
+              }
+            },
+            {
+              "Name": "ENV",
+              "Type": "PLAINTEXT",
+              "Value": "Prod"
+            },
+            {
+              "Name": "S3_BUCKET_NAME",
+              "Type": "PLAINTEXT",
+              "Value": {
+                "Ref": "S3BucketNameProd"
+              }
+            }
+          ],
+          "Image": "aws/codebuild/standard:5.0",
+          "ImagePullCredentialsType": "CODEBUILD",
+          "PrivilegedMode": false,
+          "Type": "LINUX_CONTAINER"
+        },
+        "ServiceRole": {
+          "Ref": "roleArnTooling"
+        },
+        "Source": {
+          "Type": "CODEPIPELINE"
+        },
+        "Cache": {
+          "Type": "NO_CACHE"
+        },
+        "EncryptionKey": "alias/aws/s3",
+        "TimeoutInMinutes": 480
+      },
+      "Metadata": {
+        "aws:cdk:path": "cicd-stack/codebuild-prod/Resource"
+      }
+    },
+    "codebuildqaC5BC8A02": {
+      "Type": "AWS::CodeBuild::Project",
+      "Properties": {
+        "Artifacts": {
+          "Type": "CODEPIPELINE"
+        },
+        "Environment": {
+          "ComputeType": "BUILD_GENERAL1_SMALL",
+          "EnvironmentVariables": [
+            {
+              "Name": "CROSS_ACCOUNT_ROLE",
+              "Type": "PLAINTEXT",
+              "Value": {
+                "Ref": "roleArnQA"
+              }
+            },
+            {
+              "Name": "ENV",
+              "Type": "PLAINTEXT",
+              "Value": "QA"
+            },
+            {
+              "Name": "S3_BUCKET_NAME",
+              "Type": "PLAINTEXT",
+              "Value": {
+                "Ref": "S3BucketNameQA"
+              }
+            }
+          ],
+          "Image": "aws/codebuild/standard:5.0",
+          "ImagePullCredentialsType": "CODEBUILD",
+          "PrivilegedMode": false,
+          "Type": "LINUX_CONTAINER"
+        },
+        "ServiceRole": {
+          "Ref": "roleArnTooling"
+        },
+        "Source": {
+          "Type": "CODEPIPELINE"
+        },
+        "Cache": {
+          "Type": "NO_CACHE"
+        },
+        "EncryptionKey": "alias/aws/s3",
+        "TimeoutInMinutes": 480
+      },
+      "Metadata": {
+        "aws:cdk:path": "cicd-stack/codebuild-qa/Resource"
+      }
+    },
+    "toolingpipelinedev2ADA2A65": {
+      "Type": "AWS::CodePipeline::Pipeline",
+      "Properties": {
+        "RoleArn": {
+          "Ref": "roleArnTooling"
+        },
+        "Stages": [
+          {
+            "Actions": [
+              {
+                "ActionTypeId": {
+                  "Category": "Source",
+                  "Owner": "AWS",
+                  "Provider": "CodeCommit",
+                  "Version": "1"
+                },
+                "Configuration": {
+                  "RepositoryName": {
+                    "Fn::GetAtt": [
+                      "mlopsrepoEB364706",
+                      "Name"
+                    ]
+                  },
+                  "BranchName": "master",
+                  "PollForSourceChanges": false
+                },
+                "Name": "CodeCommit",
+                "OutputArtifacts": [
+                  {
+                    "Name": "Artifact_Source_CodeCommit"
+                  }
+                ],
+                "RoleArn": {
+                  "Fn::GetAtt": [
+                    "toolingpipelinedevSourceCodeCommitCodePipelineActionRole3DBAA87A",
+                    "Arn"
+                  ]
+                },
+                "RunOrder": 1
+              }
+            ],
+            "Name": "Source"
+          },
+          {
+            "Actions": [
+              {
+                "ActionTypeId": {
+                  "Category": "Build",
+                  "Owner": "AWS",
+                  "Provider": "CodeBuild",
+                  "Version": "1"
+                },
+                "Configuration": {
+                  "ProjectName": {
+                    "Ref": "codebuilddev5662E660"
+                  }
+                },
+                "InputArtifacts": [
+                  {
+                    "Name": "Artifact_Source_CodeCommit"
+                  }
+                ],
+                "Name": "CodeBuild",
+                "RoleArn": {
+                  "Fn::GetAtt": [
+                    "toolingpipelinedevBuildCodeBuildCodePipelineActionRoleB8267130",
+                    "Arn"
+                  ]
+                },
+                "RunOrder": 1
+              }
+            ],
+            "Name": "Build"
+          }
+        ],
+        "ArtifactStore": {
+          "Location": {
+            "Ref": "artifactbucket134E2AA7"
+          },
+          "Type": "S3"
+        },
+        "Name": "ToolingPipelineDev"
+      },
+      "DependsOn": [
+        "toolingrolePolicyC6676B43"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "cicd-stack/tooling-pipeline-dev/Resource"
+      }
+    },
+    "toolingpipelinedevSourceCodeCommitCodePipelineActionRole3DBAA87A": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "AWS": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":iam::",
+                      {
+                        "Ref": "AWS::AccountId"
+                      },
+                      ":root"
+                    ]
+                  ]
+                }
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "cicd-stack/tooling-pipeline-dev/Source/CodeCommit/CodePipelineActionRole/Resource"
+      }
+    },
+    "toolingpipelinedevSourceCodeCommitCodePipelineActionRoleDefaultPolicyF1162BE1": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "s3:GetObject*",
+                "s3:GetBucket*",
+                "s3:List*",
+                "s3:DeleteObject*",
+                "s3:PutObject",
+                "s3:PutObjectLegalHold",
+                "s3:PutObjectRetention",
+                "s3:PutObjectTagging",
+                "s3:PutObjectVersionTagging",
+                "s3:Abort*"
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "artifactbucket134E2AA7",
+                    "Arn"
+                  ]
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "artifactbucket134E2AA7",
+                          "Arn"
+                        ]
+                      },
+                      "/*"
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "Action": [
+                "codecommit:GetBranch",
+                "codecommit:GetCommit",
+                "codecommit:UploadArchive",
+                "codecommit:GetUploadArchiveStatus",
+                "codecommit:CancelUploadArchive"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "mlopsrepoEB364706",
+                  "Arn"
+                ]
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "toolingpipelinedevSourceCodeCommitCodePipelineActionRoleDefaultPolicyF1162BE1",
+        "Roles": [
+          {
+            "Ref": "toolingpipelinedevSourceCodeCommitCodePipelineActionRole3DBAA87A"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "cicd-stack/tooling-pipeline-dev/Source/CodeCommit/CodePipelineActionRole/DefaultPolicy/Resource"
+      }
+    },
+    "toolingpipelinedevEventsRoleDFE035B0": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "events.amazonaws.com"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "cicd-stack/tooling-pipeline-dev/EventsRole/Resource"
+      }
+    },
+    "toolingpipelinedevEventsRoleDefaultPolicy035B27AA": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": "codepipeline:StartPipelineExecution",
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":codepipeline:eu-west-2:",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":",
+                    {
+                      "Ref": "toolingpipelinedev2ADA2A65"
+                    }
+                  ]
+                ]
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "toolingpipelinedevEventsRoleDefaultPolicy035B27AA",
+        "Roles": [
+          {
+            "Ref": "toolingpipelinedevEventsRoleDFE035B0"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "cicd-stack/tooling-pipeline-dev/EventsRole/DefaultPolicy/Resource"
+      }
+    },
+    "toolingpipelinedevBuildCodeBuildCodePipelineActionRoleB8267130": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "AWS": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":iam::",
+                      {
+                        "Ref": "AWS::AccountId"
+                      },
+                      ":root"
+                    ]
+                  ]
+                }
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "cicd-stack/tooling-pipeline-dev/Build/CodeBuild/CodePipelineActionRole/Resource"
+      }
+    },
+    "toolingpipelinedevBuildCodeBuildCodePipelineActionRoleDefaultPolicyE9F98279": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "codebuild:BatchGetBuilds",
+                "codebuild:StartBuild",
+                "codebuild:StopBuild"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "codebuilddev5662E660",
+                  "Arn"
+                ]
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "toolingpipelinedevBuildCodeBuildCodePipelineActionRoleDefaultPolicyE9F98279",
+        "Roles": [
+          {
+            "Ref": "toolingpipelinedevBuildCodeBuildCodePipelineActionRoleB8267130"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "cicd-stack/tooling-pipeline-dev/Build/CodeBuild/CodePipelineActionRole/DefaultPolicy/Resource"
+      }
+    },
+    "toolingpipelineprodC00AF7CE": {
+      "Type": "AWS::CodePipeline::Pipeline",
+      "Properties": {
+        "RoleArn": {
+          "Ref": "roleArnTooling"
+        },
+        "Stages": [
+          {
+            "Actions": [
+              {
+                "ActionTypeId": {
+                  "Category": "Source",
+                  "Owner": "AWS",
+                  "Provider": "CodeCommit",
+                  "Version": "1"
+                },
+                "Configuration": {
+                  "RepositoryName": {
+                    "Fn::GetAtt": [
+                      "mlopsrepoEB364706",
+                      "Name"
+                    ]
+                  },
+                  "BranchName": "master",
+                  "PollForSourceChanges": false
+                },
+                "Name": "CodeCommit",
+                "OutputArtifacts": [
+                  {
+                    "Name": "Artifact_Source_CodeCommit"
+                  }
+                ],
+                "RoleArn": {
+                  "Fn::GetAtt": [
+                    "toolingpipelineprodSourceCodeCommitCodePipelineActionRole64650585",
+                    "Arn"
+                  ]
+                },
+                "RunOrder": 1
+              }
+            ],
+            "Name": "Source"
+          },
+          {
+            "Actions": [
+              {
+                "ActionTypeId": {
+                  "Category": "Build",
+                  "Owner": "AWS",
+                  "Provider": "CodeBuild",
+                  "Version": "1"
+                },
+                "Configuration": {
+                  "ProjectName": {
+                    "Ref": "codebuildprodDB351114"
+                  }
+                },
+                "InputArtifacts": [
+                  {
+                    "Name": "Artifact_Source_CodeCommit"
+                  }
+                ],
+                "Name": "CodeBuild",
+                "RoleArn": {
+                  "Fn::GetAtt": [
+                    "toolingpipelineprodBuildCodeBuildCodePipelineActionRole3EBC2505",
+                    "Arn"
+                  ]
+                },
+                "RunOrder": 1
+              }
+            ],
+            "Name": "Build"
+          }
+        ],
+        "ArtifactStore": {
+          "Location": {
+            "Ref": "artifactbucket134E2AA7"
+          },
+          "Type": "S3"
+        },
+        "Name": "ToolingPipelineProd"
+      },
+      "DependsOn": [
+        "toolingrolePolicyC6676B43"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "cicd-stack/tooling-pipeline-prod/Resource"
+      }
+    },
+    "toolingpipelineprodSourceCodeCommitCodePipelineActionRole64650585": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "AWS": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":iam::",
+                      {
+                        "Ref": "AWS::AccountId"
+                      },
+                      ":root"
+                    ]
+                  ]
+                }
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "cicd-stack/tooling-pipeline-prod/Source/CodeCommit/CodePipelineActionRole/Resource"
+      }
+    },
+    "toolingpipelineprodSourceCodeCommitCodePipelineActionRoleDefaultPolicy2CC86EB1": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "s3:GetObject*",
+                "s3:GetBucket*",
+                "s3:List*",
+                "s3:DeleteObject*",
+                "s3:PutObject",
+                "s3:PutObjectLegalHold",
+                "s3:PutObjectRetention",
+                "s3:PutObjectTagging",
+                "s3:PutObjectVersionTagging",
+                "s3:Abort*"
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "artifactbucket134E2AA7",
+                    "Arn"
+                  ]
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "artifactbucket134E2AA7",
+                          "Arn"
+                        ]
+                      },
+                      "/*"
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "Action": [
+                "codecommit:GetBranch",
+                "codecommit:GetCommit",
+                "codecommit:UploadArchive",
+                "codecommit:GetUploadArchiveStatus",
+                "codecommit:CancelUploadArchive"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "mlopsrepoEB364706",
+                  "Arn"
+                ]
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "toolingpipelineprodSourceCodeCommitCodePipelineActionRoleDefaultPolicy2CC86EB1",
+        "Roles": [
+          {
+            "Ref": "toolingpipelineprodSourceCodeCommitCodePipelineActionRole64650585"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "cicd-stack/tooling-pipeline-prod/Source/CodeCommit/CodePipelineActionRole/DefaultPolicy/Resource"
+      }
+    },
+    "toolingpipelineprodEventsRole8B6C7135": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "events.amazonaws.com"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "cicd-stack/tooling-pipeline-prod/EventsRole/Resource"
+      }
+    },
+    "toolingpipelineprodEventsRoleDefaultPolicyDB758BCE": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": "codepipeline:StartPipelineExecution",
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":codepipeline:eu-west-2:",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":",
+                    {
+                      "Ref": "toolingpipelineprodC00AF7CE"
+                    }
+                  ]
+                ]
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "toolingpipelineprodEventsRoleDefaultPolicyDB758BCE",
+        "Roles": [
+          {
+            "Ref": "toolingpipelineprodEventsRole8B6C7135"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "cicd-stack/tooling-pipeline-prod/EventsRole/DefaultPolicy/Resource"
+      }
+    },
+    "toolingpipelineprodBuildCodeBuildCodePipelineActionRole3EBC2505": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "AWS": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":iam::",
+                      {
+                        "Ref": "AWS::AccountId"
+                      },
+                      ":root"
+                    ]
+                  ]
+                }
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "cicd-stack/tooling-pipeline-prod/Build/CodeBuild/CodePipelineActionRole/Resource"
+      }
+    },
+    "toolingpipelineprodBuildCodeBuildCodePipelineActionRoleDefaultPolicyA1C39037": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "codebuild:BatchGetBuilds",
+                "codebuild:StartBuild",
+                "codebuild:StopBuild"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "codebuildprodDB351114",
+                  "Arn"
+                ]
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "toolingpipelineprodBuildCodeBuildCodePipelineActionRoleDefaultPolicyA1C39037",
+        "Roles": [
+          {
+            "Ref": "toolingpipelineprodBuildCodeBuildCodePipelineActionRole3EBC2505"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "cicd-stack/tooling-pipeline-prod/Build/CodeBuild/CodePipelineActionRole/DefaultPolicy/Resource"
+      }
+    },
+    "toolingpipelineqa7601CA4E": {
+      "Type": "AWS::CodePipeline::Pipeline",
+      "Properties": {
+        "RoleArn": {
+          "Ref": "roleArnTooling"
+        },
+        "Stages": [
+          {
+            "Actions": [
+              {
+                "ActionTypeId": {
+                  "Category": "Source",
+                  "Owner": "AWS",
+                  "Provider": "CodeCommit",
+                  "Version": "1"
+                },
+                "Configuration": {
+                  "RepositoryName": {
+                    "Fn::GetAtt": [
+                      "mlopsrepoEB364706",
+                      "Name"
+                    ]
+                  },
+                  "BranchName": "master",
+                  "PollForSourceChanges": false
+                },
+                "Name": "CodeCommit",
+                "OutputArtifacts": [
+                  {
+                    "Name": "Artifact_Source_CodeCommit"
+                  }
+                ],
+                "RoleArn": {
+                  "Fn::GetAtt": [
+                    "toolingpipelineqaSourceCodeCommitCodePipelineActionRole47D45007",
+                    "Arn"
+                  ]
+                },
+                "RunOrder": 1
+              }
+            ],
+            "Name": "Source"
+          },
+          {
+            "Actions": [
+              {
+                "ActionTypeId": {
+                  "Category": "Build",
+                  "Owner": "AWS",
+                  "Provider": "CodeBuild",
+                  "Version": "1"
+                },
+                "Configuration": {
+                  "ProjectName": {
+                    "Ref": "codebuildqaC5BC8A02"
+                  }
+                },
+                "InputArtifacts": [
+                  {
+                    "Name": "Artifact_Source_CodeCommit"
+                  }
+                ],
+                "Name": "CodeBuild",
+                "RoleArn": {
+                  "Fn::GetAtt": [
+                    "toolingpipelineqaBuildCodeBuildCodePipelineActionRole6324640F",
+                    "Arn"
+                  ]
+                },
+                "RunOrder": 1
+              }
+            ],
+            "Name": "Build"
+          }
+        ],
+        "ArtifactStore": {
+          "Location": {
+            "Ref": "artifactbucket134E2AA7"
+          },
+          "Type": "S3"
+        },
+        "Name": "ToolingPipelineQA"
+      },
+      "DependsOn": [
+        "toolingrolePolicyC6676B43"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "cicd-stack/tooling-pipeline-qa/Resource"
+      }
+    },
+    "toolingpipelineqaSourceCodeCommitCodePipelineActionRole47D45007": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "AWS": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":iam::",
+                      {
+                        "Ref": "AWS::AccountId"
+                      },
+                      ":root"
+                    ]
+                  ]
+                }
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "cicd-stack/tooling-pipeline-qa/Source/CodeCommit/CodePipelineActionRole/Resource"
+      }
+    },
+    "toolingpipelineqaSourceCodeCommitCodePipelineActionRoleDefaultPolicy67EC7C05": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "s3:GetObject*",
+                "s3:GetBucket*",
+                "s3:List*",
+                "s3:DeleteObject*",
+                "s3:PutObject",
+                "s3:PutObjectLegalHold",
+                "s3:PutObjectRetention",
+                "s3:PutObjectTagging",
+                "s3:PutObjectVersionTagging",
+                "s3:Abort*"
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "artifactbucket134E2AA7",
+                    "Arn"
+                  ]
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "artifactbucket134E2AA7",
+                          "Arn"
+                        ]
+                      },
+                      "/*"
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "Action": [
+                "codecommit:GetBranch",
+                "codecommit:GetCommit",
+                "codecommit:UploadArchive",
+                "codecommit:GetUploadArchiveStatus",
+                "codecommit:CancelUploadArchive"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "mlopsrepoEB364706",
+                  "Arn"
+                ]
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "toolingpipelineqaSourceCodeCommitCodePipelineActionRoleDefaultPolicy67EC7C05",
+        "Roles": [
+          {
+            "Ref": "toolingpipelineqaSourceCodeCommitCodePipelineActionRole47D45007"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "cicd-stack/tooling-pipeline-qa/Source/CodeCommit/CodePipelineActionRole/DefaultPolicy/Resource"
+      }
+    },
+    "toolingpipelineqaEventsRole4B700F03": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "events.amazonaws.com"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "cicd-stack/tooling-pipeline-qa/EventsRole/Resource"
+      }
+    },
+    "toolingpipelineqaEventsRoleDefaultPolicy2BAF44FD": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": "codepipeline:StartPipelineExecution",
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":codepipeline:eu-west-2:",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":",
+                    {
+                      "Ref": "toolingpipelineqa7601CA4E"
+                    }
+                  ]
+                ]
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "toolingpipelineqaEventsRoleDefaultPolicy2BAF44FD",
+        "Roles": [
+          {
+            "Ref": "toolingpipelineqaEventsRole4B700F03"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "cicd-stack/tooling-pipeline-qa/EventsRole/DefaultPolicy/Resource"
+      }
+    },
+    "toolingpipelineqaBuildCodeBuildCodePipelineActionRole6324640F": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "AWS": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":iam::",
+                      {
+                        "Ref": "AWS::AccountId"
+                      },
+                      ":root"
+                    ]
+                  ]
+                }
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "cicd-stack/tooling-pipeline-qa/Build/CodeBuild/CodePipelineActionRole/Resource"
+      }
+    },
+    "toolingpipelineqaBuildCodeBuildCodePipelineActionRoleDefaultPolicy99B456CE": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "codebuild:BatchGetBuilds",
+                "codebuild:StartBuild",
+                "codebuild:StopBuild"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "codebuildqaC5BC8A02",
+                  "Arn"
+                ]
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "toolingpipelineqaBuildCodeBuildCodePipelineActionRoleDefaultPolicy99B456CE",
+        "Roles": [
+          {
+            "Ref": "toolingpipelineqaBuildCodeBuildCodePipelineActionRole6324640F"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "cicd-stack/tooling-pipeline-qa/Build/CodeBuild/CodePipelineActionRole/DefaultPolicy/Resource"
+      }
+    },
+    "CDKMetadata": {
+      "Type": "AWS::CDK::Metadata",
+      "Properties": {
+        "Analytics": "v2:deflate64:H4sIAAAAAAAA/0WP3QrCMAyFn8X7LuoE8VpfYMwHkNpFjGub0R9FSt/ddR14lZPkyzmkhX0Lu438+EYNY6PpDukapBrF5WE76aTBgE706Dk6hWIGb4mkgdSxJvVdsKp61ljaUrPwB0jnqEYMZVZVFooHVGwMBUg9TuwpsFtM/l0W+EYb/EzE1TEWx3J7j6SHOZsm1GSxc/xCtSSssmLTuv+TC7LqnGtgfSmL7huebLcHOMFx8/JEjYs2kEHoa/0Bj5zqliUBAAA="
+      },
+      "Metadata": {
+        "aws:cdk:path": "cicd-stack/CDKMetadata/Default"
+      }
+    }
+  },
+  "Rules": {
+    "CheckBootstrapVersion": {
+      "Assertions": [
+        {
+          "Assert": {
+            "Fn::Not": [
+              {
+                "Fn::Contains": [
+                  [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5"
+                  ],
+                  {
+                    "Ref": "BootstrapVersion"
+                  }
+                ]
+              }
+            ]
+          },
+          "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+        }
+      ]
+    }
+  }
+}

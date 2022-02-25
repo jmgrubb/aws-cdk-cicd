@@ -1,0 +1,159 @@
+{
+  "Parameters": {
+    "ToolingAccountID": {
+      "Type": "String",
+      "Description": "The ID of the tooling account"
+    },
+    "BootstrapVersion": {
+      "Type": "AWS::SSM::Parameter::Value<String>",
+      "Default": "/cdk-bootstrap/hnb659fds/version",
+      "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+    }
+  },
+  "Resources": {
+    "automationpolicy2B8E2BF9": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "athena:*",
+                "cloudformation:*",
+                "cloudwatch:*",
+                "codebuild:*",
+                "codecommit:*",
+                "codedeploy:*",
+                "ec2:CreateNetworkInterface",
+                "ec2:CreateNetworkInterfacePermission",
+                "ec2:DeleteNetworkInterface",
+                "ec2:DeleteNetworkInterfacePermission",
+                "ec2:DescribeDhcpOptions",
+                "ec2:DescribeNetworkInterfaces",
+                "ec2:DescribeRouteTables",
+                "ec2:DescribeSecurityGroups",
+                "ec2:DescribeSubnets",
+                "ec2:DescribeVpcEndpoints",
+                "ec2:DescribeVpcs",
+                "glue:*",
+                "kms:*",
+                "lambda:*",
+                "logs:*",
+                "s3:*",
+                "s3-object-lambda:*",
+                "sagemaker:*",
+                "states:*",
+                "sts:AssumeRole",
+                "iam:PassRole"
+              ],
+              "Effect": "Allow",
+              "Resource": "*"
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "automationpolicy2B8E2BF9",
+        "Roles": [
+          {
+            "Ref": "automationrole708EA008"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "cicd-iam-stack/automation-policy/Resource"
+      }
+    },
+    "automationrole708EA008": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "codepipeline.amazonaws.com"
+              }
+            },
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "codebuild.amazonaws.com"
+              }
+            },
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "cloudformation.amazonaws.com"
+              }
+            },
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "AWS": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":iam::",
+                      {
+                        "Ref": "ToolingAccountID"
+                      },
+                      ":root"
+                    ]
+                  ]
+                }
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "cicd-iam-stack/automation-role/Resource"
+      }
+    },
+    "CDKMetadata": {
+      "Type": "AWS::CDK::Metadata",
+      "Properties": {
+        "Analytics": "v2:deflate64:H4sIAAAAAAAA/yWJWwqDMBAAz+K/2fqA0n8vEPQAso1bujUPyIMiwbsb9WtmmA7aDpoK/0GoZRWa35CniGqth4+V6NFQJF+XPzMayNJpVts1bxudpjNP7pdQcMmrEnKLX2cfPbzgWf0Cs/DJRjYE480DgWyVGH0AAAA="
+      },
+      "Metadata": {
+        "aws:cdk:path": "cicd-iam-stack/CDKMetadata/Default"
+      }
+    }
+  },
+  "Rules": {
+    "CheckBootstrapVersion": {
+      "Assertions": [
+        {
+          "Assert": {
+            "Fn::Not": [
+              {
+                "Fn::Contains": [
+                  [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5"
+                  ],
+                  {
+                    "Ref": "BootstrapVersion"
+                  }
+                ]
+              }
+            ]
+          },
+          "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+        }
+      ]
+    }
+  }
+}
